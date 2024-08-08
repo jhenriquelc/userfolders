@@ -5,6 +5,9 @@ automatically select the correct implementation for the current platform.
 """
 
 import os
+import shutil
+import subprocess
+from enum import StrEnum
 
 # Paths within a user's home directory are, to my knowledge, not as
 # standardized on Unix as they are on Windows. The paths returned by this
@@ -35,20 +38,39 @@ import os
 #
 # References:
 # [1] https://specifications.freedesktop.org/basedir-spec/latest/
+# [2] https://manpages.org/xdg-user-dir
 
 
-def _prefer(path):
-    """Return os.path.expanduser(path) if it exists, or $HOME otherwise."""
+class _XdgUserDirs(StrEnum):
+    """All valid XDG user dirs accessible via the xdg-user-dir command"""
 
-    path = os.path.expanduser(path)
+    DESKTOP = "DESKTOP"
+    DOWNLOAD = "DOWNLOAD"
+    TEMPLATES = "TEMPLATES"
+    PUBLICSHARE = "PUBLICSHARE"
+    DOCUMENTS = "DOCUMENTS"
+    MUSIC = "MUSIC"
+    PICTURES = "PICTURES"
+    VIDEOS = "VIDEOS"
 
-    if os.path.isdir(path):
-        return path
-    else:
-        return os.path.expanduser("~")
+    def __repr__(self):
+        return f"<{self.__class__.__name__}.{self._name_}>"
 
 
-def _xdg_dir(env_name, default_value):
+def _xdg_user_dir_or_default(requested_folder: _XdgUserDirs, default_value: str) -> str:
+    default = os.path.expanduser(default_value)
+    xdg_user_dirs_path = shutil.which("xdg-user-dir")
+    if not xdg_user_dirs_path:
+        return default
+    out = subprocess.run(
+        [xdg_user_dirs_path, str(requested_folder)], capture_output=True, text=True
+    ).stdout.rstrip("\n")
+    if not out:
+        return default
+    return out
+
+
+def _env_or_default(env_name: str, default_value: str) -> str:
     """Return $env_name if specified, otherwise default_value."""
 
     if env_name:
@@ -62,51 +84,47 @@ def _xdg_dir(env_name, default_value):
         return os.path.expanduser(default_value)
 
 
-def get_appdata():
+def get_appdata() -> str:
     """Return the current user's roaming Application Data folder."""
     # Standardized in the XDG Base Directory Specification
-    # FIXME: Is this actually the nearest equivalent in the XDG spec?
-    return _xdg_dir("XDG_CONFIG_HOME", "~/.config")
+    return _env_or_default("XDG_DATA_HOME", "~/.local/share")
 
-def get_desktop():
+
+def get_desktop() -> str:
     """Return the current user's Desktop folder."""
-    # De facto standard among major desktop environments (GNOME, KDE, Xfce...)
-    return _prefer("~/Desktop")
+    return _xdg_user_dir_or_default(_XdgUserDirs.DESKTOP, "~/Desktop")
 
-def get_downloads():
+
+def get_downloads() -> str:
     """Return the current user's Downloads folder."""
-    # De facto standard used by Firefox, Chrome, and other browsers
-    return _prefer("~/Downloads")
+    return _xdg_user_dir_or_default(_XdgUserDirs.DOWNLOAD, "~/Downloads")
 
-def get_local_appdata():
+
+def get_local_appdata() -> str:
     """Return the current user's local Application Data folder."""
-    # Standardized in the XDG Base Directory Specification
-    # FIXME: Is this actually the nearest equivalent in the XDG spec?
-    return _xdg_dir("XDG_CONFIG_HOME", "~/.config")
+    return _env_or_default("XDG_CONFIG_HOME", "~/.local/share")
 
-def get_my_documents():
+
+def get_my_documents() -> str:
     """Return the current user's My Documents folder."""
-    # Common on recent Linux distributions
-    return _prefer("~/Documents")
+    return _xdg_user_dir_or_default(_XdgUserDirs.DOCUMENTS, "~/Documents")
+
 
 def get_my_music():
     """Return the current user's My Music folder."""
-    # Common on recent Linux distributions
-    return _prefer("~/Music")
+    return _xdg_user_dir_or_default(_XdgUserDirs.MUSIC, "~/Music")
+
 
 def get_my_pictures():
     """Return the current user's My Pictures folder."""
-    # Common on recent Linux distributions
-    return _prefer("~/Pictures")
+    return _xdg_user_dir_or_default(_XdgUserDirs.PICTURES, "~/Pictures")
+
 
 def get_my_videos():
     """Return the current user's My Videos folder."""
-    # Common on recent Linux distributions
-    return _prefer("~/Videos")
+    return _xdg_user_dir_or_default(_XdgUserDirs.VIDEOS, "~/Videos")
+
 
 def get_profile():
     """Return the current user's profile folder."""
-    # On Unix this is simply the user's home directory, though note it is not
-    # an exact equivalent since the %USERPROFILE% folder on Windows has a more
-    # defined formal structure
     return os.path.expanduser("~")
