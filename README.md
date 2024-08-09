@@ -12,7 +12,7 @@ Both Windows and Unix platforms are supported (untested on Mac, currently accept
 
 ## Fork Notice
 
-This project is a fork of bmjcode's [userpaths](https://github.com/bmjcode/userfolders) with enhanced Linux Support and modern Python features.
+This project is a fork of Benjamin Johnson's [userpaths](https://github.com/bmjcode/userpaths) with enhanced Linux Support and modern Python features.
 
 
 ## API Reference
