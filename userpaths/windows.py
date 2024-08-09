@@ -30,7 +30,7 @@ SHGFP_TYPE_DEFAULT = 1
 SHGetFolderPathW = ctypes.windll.shell32.SHGetFolderPathW
 
 
-def _get_folder_path(csidl):
+def _get_folder_path(csidl) -> str:
     """Get the path of a folder identified by a CSIDL value."""
 
     # Create a buffer to hold the return value from SHGetFolderPathW
@@ -41,15 +41,15 @@ def _get_folder_path(csidl):
     return str(buf.value)
 
 
-def get_appdata():
+def get_appdata() -> str:
     """Return the current user's roaming Application Data folder."""
     return _get_folder_path(CSIDL_APPDATA)
 
-def get_desktop():
+def get_desktop() -> str:
     """Return the current user's Desktop folder."""
     return _get_folder_path(CSIDL_DESKTOPDIRECTORY)
 
-def get_downloads():
+def get_downloads() -> str:
     """Return the current user's Downloads folder."""
     # There is no CSIDL value for this folder. The SHGetKnownFolderPath()
     # mechanism that replaces SHGetFolderPath() on Windows Vista and newer
@@ -64,26 +64,26 @@ def get_downloads():
         # Earlier versions of Windows
         return my_docs_downloads
 
-def get_local_appdata():
+def get_local_appdata() -> str:
     """Return the current user's local Application Data folder."""
     return _get_folder_path(CSIDL_LOCAL_APPDATA)
 
-def get_my_documents():
+def get_my_documents() -> str:
     """Return the current user's My Documents folder."""
     return _get_folder_path(CSIDL_PERSONAL)
 
-def get_my_music():
+def get_my_music() -> str:
     """Return the current user's My Music folder."""
     return _get_folder_path(CSIDL_MYMUSIC)
 
-def get_my_pictures():
+def get_my_pictures() -> str:
     """Return the current user's My Pictures folder."""
     return _get_folder_path(CSIDL_MYPICTURES)
 
-def get_my_videos():
+def get_my_videos() -> str:
     """Return the current user's My Videos folder."""
     return _get_folder_path(CSIDL_MYVIDEO)
 
-def get_profile():
+def get_profile() -> str:
     """Return the current user's profile folder."""
     return _get_folder_path(CSIDL_PROFILE)
