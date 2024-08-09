@@ -3,19 +3,18 @@
 from setuptools import setup, find_packages
 
 NAME = "userpaths"
-VERSION = "0.1.3"
-AUTHOR = "Benjamin Johnson"
-AUTHOR_EMAIL = "bmjcode@gmail.com"
+VERSION = "0.2.0"
+AUTHOR = "João Henrique Linhares Corrêa"
+AUTHOR_EMAIL = "joaohlc@duck.com"
 DESCRIPTION = "Cross-platform access to a user's special folders"
 
 with open("README.md", "r") as readme:
     LONG_DESCRIPTION = readme.read()
 
-URL = "https://github.com/bmjcode/userpaths"
+URL = "https://github.com/jhenriquelc/userpaths"
 PACKAGES = find_packages()
 CLASSIFIERS = [
     "Development Status :: 4 - Beta",
-    "Programming Language :: Python :: 2",
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",

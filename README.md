@@ -8,7 +8,11 @@ import userpaths
 my_docs = userpaths.get_my_documents()
 ```
 
-Both Python 2 and 3 are supported, on Windows and Unix platforms.
+Both Windows and Unix platforms are supported (untested on Mac, currently accepting contributions).
+
+## Fork Notice
+
+This project is a fork of bmjcode's [userpaths](https://github.com/bmjcode/userpaths) with enhanced Linux Support and modern Python features.
 
 
 ## API Reference
