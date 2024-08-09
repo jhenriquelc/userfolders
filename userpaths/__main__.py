@@ -1,8 +1,5 @@
 """Test program for the userpaths module."""
 
-# For Python 2 compatibility
-from __future__ import print_function
-
 # This will import the correct implementation for the current platform
 from . import *
 
