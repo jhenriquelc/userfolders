@@ -1,6 +1,6 @@
-"""Unix implementation of userpaths.
+"""Unix implementation of userfolders.
 
-Your application should not use this directly; "import userpaths" will
+Your application should not use this directly; "import userfolders" will
 automatically select the correct implementation for the current platform.
 """
 
@@ -26,10 +26,10 @@ from enum import StrEnum
 #     exist. For example, many Linux distributions now create Documents,
 #     Pictures, Music, and Video folders similar to those found on Windows.
 #
-# The userpaths module was originally designed from a Windows-centric
+# The userfolders module was originally designed from a Windows-centric
 # perspective. Because of the many differences between the two systems,
 # there are some Windows paths that do not have a direct equivalent on
-# Unix, and vice versa. In these cases, userpaths attempts to return the
+# Unix, and vice versa. In these cases, userfolders attempts to return the
 # nearest functional equivalent, but it is up to the user to ensure their
 # application is using the appropriate path for what it seeks to do.
 #

@@ -1,6 +1,6 @@
-"""Windows implementation of userpaths.
+"""Windows implementation of userfolders.
 
-Your application should not use this directly; "import userpaths" will
+Your application should not use this directly; "import userfolders" will
 automatically select the correct implementation for the current platform.
 """
 

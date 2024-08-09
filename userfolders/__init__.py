@@ -1,13 +1,13 @@
 """Cross-platform access to a user's special folders.
 
-The userpaths module provides cross-platform access to a user's special
+The userfolders module provides cross-platform access to a user's special
 folders (or directories) like My Documents, Desktop, and Application Data.
 See the function list below for available paths.
 
-Note: The userpaths module was originally designed from a Windows-centric
+Note: The userfolders module was originally designed from a Windows-centric
 perspective. Because of the many differences between the two systems, there
 are some Windows paths that do not have a direct equivalent on Unix, and
-vice versa. In these cases, userpaths attempts to return the nearest
+vice versa. In these cases, userfolders attempts to return the nearest
 functional equivalent, but it is up to the user to ensure their application
 is using the appropriate path for what it seeks to do.
 """

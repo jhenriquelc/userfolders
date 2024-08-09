@@ -1,4 +1,4 @@
-"""Test program for the userpaths module."""
+"""Test program for the userfolders module."""
 
 # This will import the correct implementation for the current platform
 from . import *
@@ -18,10 +18,10 @@ path_functions = [
 ]
 
 
-def test_userpaths():
+def test_userfolders():
     for desc, get_path in path_functions:
         print("{0:14} = {1}".format(desc, get_path()))
 
 
 if __name__ == "__main__":
-    test_userpaths()
+    test_userfolders()

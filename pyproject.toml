@@ -1,5 +1,5 @@
 [project]
-name = "userpaths"
+name = "userfolders"
 description = "Cross-platform access to a user's special folders"
 version = "0.2.0"
 requires-python = ">=3.12"
