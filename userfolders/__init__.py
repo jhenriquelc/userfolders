@@ -6,7 +6,7 @@ See the function list below for available paths.
 
 Note: The userfolders module was originally designed from a Windows-centric
 perspective. Because of the many differences between the two systems, there
-are some Windows paths that do not have a direct equivalent on Unix, and
+are some Windows paths that do not have a direct equivalent on Linux, and
 vice versa. In these cases, userfolders attempts to return the nearest
 functional equivalent, but it is up to the user to ensure their application
 is using the appropriate path for what it seeks to do.
@@ -18,8 +18,8 @@ import sys
 if sys.platform.startswith("win"):
     from .windows import *
 else:
-    # Presume anything else is a Unix-like system
-    from .unix import *
+    # Presume anything else is a Linux-like system
+    from .linux import *
 
 
 # Synonym for get_my_documents() for compatibility with winpaths

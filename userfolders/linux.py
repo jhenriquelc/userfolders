@@ -1,4 +1,4 @@
-"""Unix implementation of userfolders.
+"""Linux implementation of userfolders.
 
 Your application should not use this directly; "import userfolders" will
 automatically select the correct implementation for the current platform.
@@ -10,7 +10,7 @@ import subprocess
 from enum import StrEnum
 
 # Paths within a user's home directory are, to my knowledge, not as
-# standardized on Unix as they are on Windows. The paths returned by this
+# standardized on Linux as they are on Windows. The paths returned by this
 # module are based on the following references, in order of preference:
 #
 #  1. Published standards like the XDG Base Directory Specification [1].
@@ -29,7 +29,7 @@ from enum import StrEnum
 # The userfolders module was originally designed from a Windows-centric
 # perspective. Because of the many differences between the two systems,
 # there are some Windows paths that do not have a direct equivalent on
-# Unix, and vice versa. In these cases, userfolders attempts to return the
+# Linux, and vice versa. In these cases, userfolders attempts to return the
 # nearest functional equivalent, but it is up to the user to ensure their
 # application is using the appropriate path for what it seeks to do.
 #
