@@ -27,11 +27,13 @@ from enum import StrEnum
 #     Pictures, Music, and Video folders similar to those found on Windows.
 #
 # The userfolders module was originally designed from a Windows-centric
-# perspective. Because of the many differences between the two systems,
-# there are some Windows paths that do not have a direct equivalent on
-# Linux, and vice versa. In these cases, userfolders attempts to return the
-# nearest functional equivalent, but it is up to the user to ensure their
-# application is using the appropriate path for what it seeks to do.
+# perspective. Linux-based systems don't have to follow any strict standard,
+# although they exist (e.g Freedesktop).
+# There are also some Windows paths that do not have a direct equivalent on
+# Linux (Roaming and Local AppData). In these cases, userfolders attempts to
+# return the nearest functional equivalent, but it is up to the library's
+# consumer to ensure their application is using the appropriate path for
+# what it seeks to do.
 #
 # If you know of other applicable standards, or better equivalents than
 # the ones used here, please feel free to submit a patch.
