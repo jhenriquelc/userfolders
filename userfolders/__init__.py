@@ -17,6 +17,8 @@ import sys
 # Import the appropriate implementation for the current system
 if sys.platform.startswith("win"):
     from .windows import *
+elif sys.platform == "darwin":
+    from.mac import *
 else:
     # Presume anything else is a Linux-like system
     from .linux import *
